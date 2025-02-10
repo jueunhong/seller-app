@@ -218,7 +218,7 @@ const Admin = () => {
   
     const sellerData = monthlyData;
   const kakaopayCommission = sellerData ? Math.round(sellerData.수수료 ) : 0
-  const accountInfo = "토스뱅크 1000-6777-3434 홍주은"
+  const accountInfo = "토스뱅크 1000-8777-6507 홍주은"
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(accountInfo).then(() => {
