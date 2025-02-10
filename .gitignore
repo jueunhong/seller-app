@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+#data
+jan_data.json
+jan_shop.json
+serviceAccount.json
