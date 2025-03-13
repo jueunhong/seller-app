@@ -34,7 +34,6 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://jueunhong.github.io/seller-app/",
   "browserslist": {
     "production": [
       ">0.2%",
