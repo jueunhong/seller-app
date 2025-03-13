@@ -5,6 +5,8 @@ import {doc, getDoc} from "firebase/firestore";
 import firebaseExports from "../firebase.js";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../images/logo.svg";
+import ChangePassword from "../components/change_password.js";
+import EditPassword from "../components/edit_password.js";
 
 const {db} = firebaseExports;
 
@@ -14,6 +16,7 @@ const Login = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [isChangePassword, setIsChangePassword] = useState(false);
     const handleIdChange = (e) => {
         setId(e.target.value);
     }
@@ -74,8 +77,12 @@ const Login = () => {
                         {loading ? "로그인 중..." : "로그인"}
                     </SubmitButton>
             </FormContainer>
+            <EditPassword isChangePassword={isChangePassword} setIsChangePassword={setIsChangePassword}/>
           
         </TabContainer>
+        { isChangePassword &&
+        <ChangePassword isChangePassword={isChangePassword} setIsChangePassword={setIsChangePassword}/>
+}
       </Main>
         
     );}

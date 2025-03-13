@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import {doc, getDoc,collection} from "firebase/firestore";
 import firebaseExports from "../firebase.js";
+import Alarm from "../components/non_payment_alarm.js";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -180,7 +181,8 @@ const Admin = () => {
   const sellerId = String( location.state.sellerId);
     const [monthlyData, setMonthlyData] = useState(null)
   const [copied, setCopied] = useState(false)
-  const [selectedMonth, setSelectedMonth] = useState("1")
+  const currentMonth = new Date().getMonth() + 1; // 현재 월 (1~12)
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth - 1 || 12); // 기본값: 현재 월 - 1
   const [sellerName, setSellerName] = useState("")
 
   useEffect(() => {
@@ -238,12 +240,13 @@ const Admin = () => {
       <GlobalStyle />
       <Container>
         <Title>{sellerName} 어드민</Title>
+        <Alarm id={sellerId} />
 
         <SelectWrapper>
-          <Select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
-            <option value="1">1월</option>
-            <option value="2">2월</option>
-            {/* Add more months as needed */}
+        <Select value={selectedMonth} onChange={(e) => setSelectedMonth(Number(e.target.value))}>
+            {[...Array(12)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>{`${i + 1}월`}</option>
+            ))}
           </Select>
         </SelectWrapper>
 
